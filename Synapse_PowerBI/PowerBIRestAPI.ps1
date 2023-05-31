@@ -1,9 +1,5 @@
 #Power BI REST API calls. 
 
-
-
-
-
 #Get List Of DataGateways
 $dataGateways= (Invoke-PowerBIRestMethod -Method Get -Url "https://api.powerbi.com/v1.0/myorg/gateways" |ConvertFrom-Json).value  |select-object id,type,name `
 ,@{ Name = 'gatewayMachine'; Expression = {  ($_.gatewayAnnotation|ConvertFrom-Json).gatewayMachine }}                                        `
@@ -11,3 +7,9 @@ $dataGateways= (Invoke-PowerBIRestMethod -Method Get -Url "https://api.powerbi.c
 ,@{ Name = 'gatewayContactInformation'; Expression = {  ($_.gatewayAnnotation|ConvertFrom-Json).gatewayContactInformation }}                  `
 ,@{ Name = 'gatewayVirtualNetworkSubnetId'; Expression = {  ($_.gatewayAnnotation|ConvertFrom-Json).gatewayVirtualNetworkSubnetId }}
 
+
+#Get List Of DataSources
+$dataSources=$null
+$dataGateways| foreach {  
+    $dataSources+=(Invoke-PowerBIRestMethod -Method Get -Url "https://api.powerbi.com/v1.0/myorg/gateways/$($_.id)/datasources" |ConvertFrom-Json).value 
+    } 
