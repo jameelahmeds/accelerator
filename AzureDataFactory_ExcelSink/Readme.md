@@ -1,4 +1,4 @@
-# Heading Exporting data to Excel files in Azure Data Factory (ADF) and Azure Synapse Analytics
+# Exporting data to Excel files in Azure Data Factory (ADF) and Azure Synapse Analytics
 
 The support for Excel files Azure Data Factory (ADF) and Azure Synapse Analytics *["is supported as source but not sink."](https://learn.microsoft.com/en-us/azure/data-factory/format-excel)* You can read from an excel file but can not write/export to an excel file. 
 
